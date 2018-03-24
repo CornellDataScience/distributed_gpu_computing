@@ -140,16 +140,20 @@ class FCN():
         p2 = tf.get_default_graph().get_tensor_by_name('fc1/Placeholder:0')
     """
 
-    def plot_predictions(*args):
+    def plot_predictions(self, *args):
+        self.session = tf.InteractiveSession()
+        self.saver.restore(self.session, self.save_path)
         digit_indices = np.array(list(args))
         num_indices = len(digit_indices)
         fig, axes =  plt.subplots(ncols=num_indices, figsize=(num_indices, 1))
+        p1 = tf.get_default_graph().get_tensor_by_name('inputs/Placeholder_2:0')
+        p2 = tf.get_default_graph().get_tensor_by_name('fc1/Placeholder:0')
         for i, idx in enumerate(digit_indices):
             ax = axes.flatten()[i]
             vec = mnist.test.images[idx]
             img = vec.reshape(28, 28)
-            args = {x: np.expand_dims(vec, 0), p1: 1.0, p2: 1.0}
-            pred = sess.run(preds, feed_dict=args)
+            args = {self.x: np.expand_dims(vec, 0), p1: 1.0, p2: 1.0}
+            pred = self.session.run(self.preds, feed_dict=args)
             ax.set_title('Pred: {}'.format(np.argmax(pred)))
             ax.imshow(img, cmap='gray')
             ax.axis('off')
@@ -158,7 +162,8 @@ class FCN():
 
 if __name__ == "__main__":
     #print_tensors_in_checkpoint_file('models/fcn/mnist_fc', '', '', True)
-    #plot_digits(5, 33, 1445, 20709, 23333, 40101)
+    #plot_digits(5, 33, 1445, 3434, 9888)
     net = FCN('models/fcn/mnist_fc')
-    net.train(10000)
-    net.plot_predictions(5, 33, 1445, 20709, 23333, 40101)
+    net.train(100)
+    # max 10,000
+    net.plot_predictions(5, 33, 1445, 3434, 9888)
