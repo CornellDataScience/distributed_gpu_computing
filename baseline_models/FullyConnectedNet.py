@@ -91,7 +91,6 @@ class FCN():
                         self.y: mnist.test.labels, self.prob_i: 1.0, self.prob_fc: 1.0}
         test_accuracy = self.session.run(self.accuracy, feed_dict={self.x: mnist.test.images,
                         self.y: mnist.test.labels, self.prob_i: 1.0, self.prob_fc: 1.0})
-        print("Best test accuracy: %g" % best_accuracy)
         return test_accuracy
 
     def train(self, num_iterations):
@@ -125,10 +124,9 @@ class FCN():
                     self.saver.restore(sess, self.save_path)
                     print("Validation accuracy was: %g. Previous accuracy: %g. " % (val_accuracy, best_accuracy) + "Using old parameters for further optimizations.")
 
-
-
             print("Training took %.4f seconds." % (time.time() - start_time))
             self.test_accuracy()
+            print("Best test accuracy: %g" % best_accuracy)
 
     """
     def load_trained_model(self):
