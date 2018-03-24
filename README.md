@@ -12,11 +12,13 @@ We intend to look into the following:
 
 Tensorflow is the most popular execution engine for neural networks. While PyTorch is also an option (as is the whole host of platforms like Caffe2, Keras, Theano and Lasagne), tensorflow is typically easier to expand to larger scales and provides a good starting point for learning and baseline formulations. There also seems to be more widespread efforts to distribute tensorflow over multiple machines - partly due to its more static graph construction. Our aim is to gain relatively wide and thorough understanding of these efforts and their implications, while potentially expanding these efforts to other platforms. 
 
-- __TensorflowOnSpark__
+- [__TensorflowOnSpark__](https://docs.databricks.com/applications/deep-learning/tensorflow.html)
+
+Databrick's convenient documentation: [link](https://docs.databricks.com/applications/deep-learning/tensorflow.html)
 
 This is a library that launches multiple instances of tensorflow using Apache Spark. This is a naive approach to parallelization, and is most useful for hyperparameter optimization. A potential use case may be to join these efforts with SigOpt, which provides hyperparameter optimization on Spark via Bayesian optimization. However, this will not be the main area of interest for us, because while it is helpful to gain an understanding on how it works, it is not a topic that requires intensive research nor is it a field we are capable of making significant contributions to. 
 
-- __Horovod__
+- [__Horovod__](https://github.com/uber/horovod)
 
  This is a library that is executable on both Keras and Tensorflow, and allows parallelization over multiple GPUs. While Tensorflow also has modules for distributions, Norovod claims that its libraries are much easier to use and achieves better results. We intend to thoroughly understand and experiment with their APIs.
 
