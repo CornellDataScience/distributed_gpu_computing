@@ -1,4 +1,6 @@
 # Distributed GPU Computing Team
+[![Cornell Data Science Logo](images/CDS-banner.png)](cornelldata.science)
+
 Members: Dae Won Kim, Eashaan Kumar, Katarina Jankov
 
 ## Project introduction
